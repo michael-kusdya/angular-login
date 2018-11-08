@@ -10,28 +10,12 @@
 
         var service = {};
 
-        service.GetAll = GetAll;
-        service.GetById = GetById;
         service.GetByUsername = GetByUsername;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
 
         return service;
-
-        function GetAll() {
-            var deferred = $q.defer();
-            deferred.resolve(getUsers());
-            return deferred.promise;
-        }
-
-        function GetById(id) {
-            var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), { id: id });
-            var user = filtered.length ? filtered[0] : null;
-            deferred.resolve(user);
-            return deferred.promise;
-        }
 
         function GetByUsername(username) {
             var deferred = $q.defer();
@@ -69,12 +53,12 @@
             return deferred.promise;
         }
 
-        function Update(user) {
+        function Update(user, id) {
             var deferred = $q.defer();
 
             var users = getUsers();
             for (var i = 0; i < users.length; i++) {
-                if (users[i].id === user.id) {
+                if (users[i].id === id) {
                     users[i] = user;
                     break;
                 }
@@ -102,7 +86,7 @@
             return deferred.promise;
         }
 
-        // private functions
+
 
         function getUsers() {
             if(!localStorage.users){

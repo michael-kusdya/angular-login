@@ -12,7 +12,6 @@
         vm.register = register;
 
         function register() {
-            vm.dataLoading = true;
             UserService.Create(vm.user)
                 .then(function (response) {
                     if (response.success) {
@@ -20,7 +19,7 @@
                         $location.path('/login');
                     } else {
                         FlashService.Error(response.message);
-                        vm.dataLoading = false;
+        
                     }
                 });
         }
