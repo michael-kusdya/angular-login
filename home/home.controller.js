@@ -10,7 +10,6 @@
         var vm = this;
 
         vm.user = null;
-        vm.allUsers = [];
         vm.deleteUser = deleteUser;
 
         initController();
@@ -23,6 +22,8 @@
             UserService.GetByUsername($rootScope.globals.currentUser.username)
                 .then(function (user) {
                     vm.user = user;
+                    // console.log('oioi', vm.user);
+                    
                 });
         }
 
