@@ -32,9 +32,16 @@
                 .then(function () {
                     loadCurrentUser();
                     $window.location.href = '#!/';
+                     FlashService.Success('Update successful', true);
+                    // if (response) {
+                    //     FlashService.Success('Update successful', true);
+                    //     $location.path('#!/');
+                    // } else {
+                    //     FlashService.Error(response.message);
+                    // }
                 }).catch(function (err) {
                     console.log(err);
-                    throw err;
+                    FlashService.Error(response.message);
                 });;
         }
     }
